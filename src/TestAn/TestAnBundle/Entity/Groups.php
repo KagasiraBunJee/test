@@ -3,7 +3,7 @@
 namespace TestAn\TestAnBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints as Asset;
 use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Groups
@@ -25,7 +25,7 @@ class Groups
     /**
      * @var string
      * @ORM\Column(name="name", type="string", length=255)
-     * @NotBlank()
+     * @Asset\NotBlank()
      */
     private $name;
 

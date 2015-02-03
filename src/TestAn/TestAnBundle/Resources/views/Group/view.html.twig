@@ -1,0 +1,22 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}TestAnTestAnBundle:Group:view{% endblock %}
+
+{% block body %}
+<h1>Group "{{ group.name }}" view page</h1>
+
+<div>
+    
+    <p>Group name: {{ group.name }}</p>
+    {% if group.users|length > 0 %}
+    <ul>
+        {% for user in group.users %}
+            
+            <li><a href="{{ path('view_user', { id:user.id }) }}">{{ user.login }}</a></li>
+            
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+</div>
+{% endblock %}

@@ -20,14 +20,14 @@ class GroupController extends Controller
      */
     public function addAction(Request $request)
     {
-        $form = $this->createForm(new GroupsType());
+        $group = new Groups();
+        $form = $this->createForm(new GroupsType(),$group);
         $form->handleRequest($request);
         
         if($form->isValid())
         {
-            $data = $form->getData();
             $em = $this->getDoctrine()->getManager();
-            $em->persist($data);
+            $em->persist($group);
             $em->flush();
         }
         
@@ -41,8 +41,21 @@ class GroupController extends Controller
      * @Template()
      */
     public function listAction()
+    {}
+    
+    /**
+     * @Route("/{id}", name="view_group")
+     * @Template()
+     */
+    public function viewAction($id)
     {
-                
+        $em = $this->getDoctrine()->getManager();
+        $group = new Groups();
+        $group = $em->getRepository("TestAnTestAnBundle:Groups")->find($id);
+        
+        return array(
+            'group' => $group
+        );
     }
 
 }

@@ -21,16 +21,15 @@ class UserController extends Controller
      */
     public function addAction(Request $request)
     {
+        $user = new User();
         $em = $this->getDoctrine()->getManager();
         $factory = $this->get('security.encoder_factory');
-        $form = $this->createForm(new UserType());
+        $form = $this->createForm(new UserType(), $user);
         $form->handleRequest($request);
         
         if($form->isValid())
         {
-            $data = $form->getData();
-            
-            $em->persist($data);
+            $em->persist($user);
             $em->flush();
         }
         
@@ -40,14 +39,33 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/")
+     * @Route("/", name="user_list")
      * @Template()
      */
     public function listAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        
+        $users = $em->getRepository("TestAnTestAnBundle:User")->findAll();
+        
         return array(
-                // ...
-            );
+            'users' => $users
+        );
+    }
+    
+    /**
+     * @Route("/users/{id}", name="view_user")
+     * @Template()
+     */
+    public function viewAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = new User();
+        $user = $em->getRepository("TestAnTestAnBundle:User")->find($id);
+        
+        return array(
+            'user' => $user
+        );
     }
 
 }

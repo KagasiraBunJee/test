@@ -3,10 +3,7 @@
 namespace TestAn\TestAnBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validation\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Regex;
-use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -27,8 +24,8 @@ class User implements UserInterface{
     /**
      * @var string
      * @ORM\Column(type="string", nullable=false, name="login")
-     * @NotBlank()
-     * @Regex("/^[a-zA-Z0-9_]+$/")
+     * @Assert\NotBlank()
+     * @Assert\Regex("/^[a-zA-Z0-9_]+$/")
      */
     private $login;
     
@@ -40,13 +37,15 @@ class User implements UserInterface{
     
     /**
      * @var string
-     * @Email()
+     * @Assert\Email()
+     * @Assert\NotBlank()
      * @ORM\Column(name="email", type="string")
      */
     private $email;
 
     /**
      * @var string
+     * @Assert\NotBlank()
      * @ORM\Column(name="password", type="string")
      */
     private $password;

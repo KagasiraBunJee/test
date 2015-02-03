@@ -3,10 +3,3 @@ test_an_test_an:
     type:     annotation
     prefix:   /
 
-test_test:
-    resource: "@TestTestBundle/Resources/config/routing.yml"
-    prefix:   /
-
-app:
-    resource: @AppBundle/Controller/
-    type:     annotation

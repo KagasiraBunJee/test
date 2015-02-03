@@ -4,5 +4,13 @@
 
 {% block body %}
 <h1>User add form</h1>
-{{ form(form) }}
+{{ form_start(form,  {'attr': {'novalidate': 'novalidate'}}) }}
+
+{{ form_row(form.login) }}
+{{ form_row(form.email) }}
+{{ form_row(form.password) }}
+{{ form_row(form.group) }}
+{{ form_row(form.submit) }}
+
+{{ form_end(form) }}
 {% endblock %}

@@ -18,7 +18,11 @@ class UserType extends AbstractType
             ->add('login')
             ->add('password')
             ->add('email')
-            ->add('group')
+            ->add('group', 'entity', array(
+                'class' => 'TestAnTestAnBundle:Groups',
+                'empty_value' => "Select Group",
+                'required' => true
+            ))
             ->add('submit','submit')
         ;
     }

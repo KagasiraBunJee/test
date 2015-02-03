@@ -3,5 +3,21 @@
 {% block title %}TestAnTestAnBundle:User:list{% endblock %}
 
 {% block body %}
-<h1>Welcome to the User:list page</h1>
+<h1>Users list page</h1>
+
+<div>
+    
+    {% if users|length > 0 %}
+    <ul>
+        {% for user in users %}
+            
+            <li>{{ user.id }}: <a href="{{ path('view_user', { id:user.id }) }}">{{ user.login }}</a></li>
+            
+        {% endfor %}
+    </ul>
+    {% else %}
+        No users found.
+    {% endif %}
+    
+</div>
 {% endblock %}

@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}TestAnTestAnBundle:User:view{% endblock %}
+
+{% block body %}
+<h1>User "{{ user.login }} view page"</h1>
+
+<div>
+    
+    <p>Email: {{ user.email }}</p>
+    <p>Login: {{ user.login }}</p>
+    <p>Group: <a href="{{ path('view_group', { id: user.group.id}) }}">{{ user.group.name }}</a></p>
+    
+    
+</div>
+{% endblock %}
