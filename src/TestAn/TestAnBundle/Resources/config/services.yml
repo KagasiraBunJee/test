@@ -1,0 +1,5 @@
+services:
+    auth_success:
+        class: TestAn\TestAnBundle\Security\Auth\SuccessAuth
+        public: false
+        arguments: ['@router', '@doctrine.orm.entity_manager']

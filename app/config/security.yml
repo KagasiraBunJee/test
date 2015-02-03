@@ -1,0 +1,27 @@
+security:
+
+    encoders:
+        TestAn\TestAnBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 12
+
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER]
+
+    providers:
+        db:
+            entity: { class: TestAnTestAnBundle:User, property: login }
+    firewalls:
+        main:
+            pattern: /.*
+            form_login:
+                login_path: /login
+                check_path: /login_check
+                success_handler: auth_success
+            logout:
+                path: /logout
+                target: /
+            security: true
+            anonymous: true
+    access_control:
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
