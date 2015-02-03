@@ -10,6 +10,7 @@ use TestAn\TestAnBundle\Entity\User;
 use TestAn\TestAnBundle\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpKernel\Exception\HttpNotFoundException;
 
 /**
  * @Route("/users")
@@ -55,13 +56,20 @@ class UserController extends Controller
     }
     
     /**
-     * @Route("/users/{id}", name="view_user")
+     * @Route("/{id}", name="view_user")
      * @ParamConverter("user", class="TestAnTestAnBundle:User")
      * @Template()
      */
     public function viewAction(User $user)
     {
+        if($user === null)
+        {
+            throw $this->createException('Something went wrong');
+        }
         
+        return array(
+            'user' => $user
+        );
     }
 
 }

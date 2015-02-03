@@ -51,7 +51,9 @@ class GroupController extends Controller
      */
     public function viewAction(Groups $group)
     {
-        
+        return array(
+            'group' => $group
+        );
     }
 
 }
