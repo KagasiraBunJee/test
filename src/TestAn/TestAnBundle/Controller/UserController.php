@@ -62,11 +62,6 @@ class UserController extends Controller
      */
     public function viewAction(User $user)
     {
-        if($user === null)
-        {
-            throw $this->createException('Something went wrong');
-        }
-        
         return array(
             'user' => $user
         );
