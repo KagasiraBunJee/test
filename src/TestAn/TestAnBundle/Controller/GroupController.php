@@ -53,6 +53,13 @@ class GroupController extends Controller
         $group = new Groups();
         $group = $em->getRepository("TestAnTestAnBundle:Groups")->find($id);
         
+        if($group === null)
+        {
+            throw new TransformationFailedException(sprintf(
+                    'There is no data with id "%s"', $id
+                ));
+        }
+        
         return array(
             'group' => $group
         );

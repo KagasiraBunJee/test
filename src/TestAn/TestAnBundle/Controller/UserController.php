@@ -63,6 +63,13 @@ class UserController extends Controller
         $user = new User();
         $user = $em->getRepository("TestAnTestAnBundle:User")->find($id);
         
+        if($user === null)
+        {
+            throw new TransformationFailedException(sprintf(
+                    'There is no data with id "%s"', $id
+                ));
+        }
+        
         return array(
             'user' => $user
         );
