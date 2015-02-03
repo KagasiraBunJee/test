@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use TestAn\TestAnBundle\Entity\Groups;
 use TestAn\TestAnBundle\Form\GroupsType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * @Route("/groups")
@@ -45,24 +46,12 @@ class GroupController extends Controller
     
     /**
      * @Route("/{id}", name="view_group")
+     * @ParamConverter("group", class="TestAnTestAnBundle:Groups")
      * @Template()
      */
-    public function viewAction($id)
+    public function viewAction(Groups $group)
     {
-        $em = $this->getDoctrine()->getManager();
-        $group = new Groups();
-        $group = $em->getRepository("TestAnTestAnBundle:Groups")->find($id);
         
-        if($group === null)
-        {
-            throw new TransformationFailedException(sprintf(
-                    'There is no data with id "%s"', $id
-                ));
-        }
-        
-        return array(
-            'group' => $group
-        );
     }
 
 }

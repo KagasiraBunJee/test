@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use TestAn\TestAnBundle\Entity\User;
 use TestAn\TestAnBundle\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * @Route("/users")
@@ -55,24 +56,12 @@ class UserController extends Controller
     
     /**
      * @Route("/users/{id}", name="view_user")
+     * @ParamConverter("user", class="TestAnTestAnBundle:User")
      * @Template()
      */
-    public function viewAction($id)
+    public function viewAction(User $user)
     {
-        $em = $this->getDoctrine()->getManager();
-        $user = new User();
-        $user = $em->getRepository("TestAnTestAnBundle:User")->find($id);
         
-        if($user === null)
-        {
-            throw new TransformationFailedException(sprintf(
-                    'There is no data with id "%s"', $id
-                ));
-        }
-        
-        return array(
-            'user' => $user
-        );
     }
 
 }
