@@ -1,3 +1,0 @@
-test_test_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: TestTestBundle:Default:index }
